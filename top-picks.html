@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Top Picks - EAM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .rotation-container {
+            position: relative;
+            width: 100%;
+            height: 620px; /* Height for visibility */
+            perspective: 1500px; /* Further away effect */
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .rotation-wrapper {
+            position: absolute;
+            animation: rotate 15s infinite linear;
+            transform-style: preserve-3d;
+            
+        }
+        .product-card {
+            position: absolute;
+            width: 300px; /* Card width */
+            height: 500px; /* Card height */
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 15px;
+            overflow: hidden;
+        }
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+        .product-card img {
+            width: 100%; /* Ensure image fits the width */
+            height: 200px; /* Fixed height for uniformity */
+            object-fit: crop; /* Crop the image to fit the card */
+            border-radius: 10px; /* Rounded corners for the image */
+        }
+        .product-info {
+            text-align: center;
+        }
+        .product-info .price, .product-info .rating, .product-info .description, .product-info .date-added {
+            font-size: 1em; /* Uniform font size */
+            margin: 5px 0; /* Margin for spacing */
+        }
+        .buy-button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sticky-nav">
+        <div class="logo">EAM</div>
+        <div class="nav-links">
+            <a href="homepage.html">Home</a>
+            <a href="categories.html">Categories</a>
+            <a href="top-picks.html">Top Picks</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="search-bar">
+            <input type="search" placeholder="Search products...">
+        </div>
+    </nav> 
+    <!-- Include the same navigation -->
+    
+    <section class="page-header">
+        <h1>Our Top Picks</h1>
+        <p>Hand-selected products we recommend</p>
+    </section>
+
+    <section class="rotation-container">
+        <div class="rotation-wrapper">
+            <!-- Sony WH-1000XM4 -->
+            <div class="product-card" style="transform: rotateY(0deg) translateZ(120px);">
+                <img src="https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg" alt="Sony WH-1000XM4">
+                <div class="product-info">
+                    <h3>Sony WH-1000XM4</h3>
+                    <p class="price">$348.00</p>
+                    <p class="rating">⭐⭐⭐⭐⭐</p>
+                    <p class="description">Noise Canceling Wireless Headphones</p>
+                    <p class="date-added">Released: Aug 6, 2020</p>
+                    <a href="https://www.amazon.com/Sony-WH-1000XM4-Canceling-Headphones-phone-call/dp/B0863TXGM3" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- JBL Tune 510BT -->
+            <div class="product-card" style="transform: rotateY(120deg) translateZ(120px);">
+                <img src="https://m.media-amazon.com/images/I/61kFL7ywsZS.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="JBL Tune 510BT">
+                <div class="product-info">
+                    <h3>JBL Tune 510BT</h3>
+                    <p class="price">$29.95</p>
+                    <p class="rating">⭐⭐⭐⭐</p>
+                    <p class="description">Wireless on-ear headphones</p>
+                    <p class="date-added">Released: Jan 7, 2021</p>
+                    <a href="https://www.amazon.com/JBL-Wireless-Headphones-Compatible-Bluetooth/dp/B08WM3LMJF" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- Beats Solo3 Wireless -->
+            <div class="product-card" style="transform: rotateY(240deg) translateZ(120px);">
+                <img src="https://m.media-amazon.com/images/I/61HH4j3GZdL._AC_SX522_.jpg" alt="Beats Solo3 Wireless">
+                <div class="product-info">
+                    <h3>Beats Solo3 Wireless</h3>
+                    <p class="price">$99.99</p>
+                    <p class="rating">⭐⭐⭐⭐⭐</p>
+                    <p class="description">40 hours of battery life</p>
+                    <p class="date-added">Released: Sep 7, 2016</p>
+                    <a href="https://www.amazon.com/Beats-Solo3-Wireless-Headphones-Built/dp/B0CCBKGDJD" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include the same footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3>About EAM</h3>
+                    <p>Curating the best products for your everyday life.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="top-picks.html">Top Picks</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <form class="footer-signup">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="legal">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Use</a>
+                    <p>© 2024 EAM. Affiliate Disclosure: Some links may earn us a commission</p>
+                </div>
+            </div>
+        </div>
+    </footer> 
+</body>
+</html> 

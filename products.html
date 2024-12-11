@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - EAM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation (same as homepage) -->
+    <nav class="sticky-nav">
+        <div class="logo">EAM</div>
+        <div class="nav-links">
+            <a href="homepage.html" class="active">Home</a>
+            <a href="categories.html">Categories</a>
+            <a href="top-picks.html">Top Picks</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="search-bar">
+            <input type="search" id="product-search" placeholder="Search products...">
+        </div>
+    </nav>
+
+
+    <main class="products-page">
+        <!-- Filters Sidebar -->
+        <aside class="filters">
+            <h2>Filters</h2>
+            
+            <div class="filter-group">
+                <h3>Category</h3>
+                <label><input type="checkbox" name="category" value="Electronics"> Electronics</label>
+                <label><input type="checkbox" name="category" value="Home & Garden"> Home & Garden</label>
+                <label><input type="checkbox" name="category" value="Fashion"> Fashion</label>
+                <label><input type="checkbox" name="category" value="Sports"> Sports</label>
+            </div>
+
+            <div class="filter-group">
+                <h3>Price Range</h3>
+                <input type="range" min="0" max="1000" class="price-slider" id="price-slider">
+                <div class="price-inputs">
+                    <input type="number" placeholder="Min" id="min-price">
+                    <input type="number" placeholder="Max" id="max-price">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Rating</h3>
+                <div class="rating-filters">
+                    <label>
+                        <input type="checkbox" class="rating-filter" value="5"> ⭐⭐⭐⭐⭐
+                    </label>
+                    <label>
+                        <input type="checkbox" class="rating-filter" value="4"> ⭐⭐⭐⭐
+                    </label>
+                    <label>
+                        <input type="checkbox" class="rating-filter" value="3"> ⭐⭐⭐
+                    </label>
+                    <label>
+                        <input type="checkbox" class="rating-filter" value="2"> ⭐⭐
+                    </label>
+                    <label>
+                        <input type="checkbox" class="rating-filter" value="1"> ⭐
+                    </label>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- Products Grid -->
+        <section class="products-grid">
+            <div class="products-header">
+                <h1>All Products</h1>
+                <div class="sort-controls">
+                    <select class="sort-select" id="sort-select">
+                        <option value="latest">Latest</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                    <button id="clear-filters" class="clear-filters">Clear Filters</button>
+                </div>
+            </div>
+
+            <div class="products-container">
+                <!-- JBL Tune 510BT -->
+                <div class="product-card" data-date="2021-01-07">
+                    <img src="https://m.media-amazon.com/images/I/61kFL7ywsZS.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="JBL Tune 510BT">
+                    <div class="product-info">
+                        <h3>JBL Tune 510BT</h3>
+                        <p class="price">$29.95</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐☆</p>
+                        <p class="description">Wireless on-ear headphones with Pure Bass sound and 40h battery life</p>
+                        <p class="date-added">Released: January 7, 2021</p>
+                        <a href="https://www.amazon.com/JBL-Wireless-Headphones-Compatible-Bluetooth/dp/B08WM3LMJF" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Beats Solo3 -->
+                <div class="product-card" data-date="2016-09-07">
+                    <img src="https://m.media-amazon.com/images/I/61HH4j3GZdL._AC_SX522_.jpg" alt="Beats Solo3">
+                    <div class="product-info">
+                        <h3>Beats Solo3 Wireless</h3>
+                        <p class="price">$99.99</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐⭐</p>
+                        <p class="description">Apple W1 chip, 40 hours of battery life, built-in microphone</p>
+                        <p class="date-added">Released: September 7, 2016</p>
+                        <a href="https://www.amazon.com/Beats-Solo3-Wireless-Headphones-Built/dp/B0CCBKGDJD" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- TOZO T10 -->
+                <div class="product-card" data-date="2019-07-18">
+                    <img src="https://m.media-amazon.com/images/I/715CLGC8OML._AC_SX679_.jpg" alt="TOZO T10">
+                    <div class="product-info">
+                        <h3>TOZO T10</h3>
+                        <p class="price">$25.99</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐☆</p>
+                        <p class="description">Bluetooth 5.3 IPX8 Waterproof Wireless Earbuds with Wireless Charging Case</p>
+                        <p class="date-added">Released: July 18, 2019</p>
+                        <a href="https://www.amazon.com/TOZO-Bluetooth-Wireless-Headphones-Waterproof/dp/B07J2Z5DBM" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Soundcore by Anker Life Q30 -->
+                <div class="product-card" data-date="2020-10-15">
+                    <img src="https://m.media-amazon.com/images/I/61+WYAjltpL._AC_SL1500_.jpg" alt="Soundcore Life Q30">
+                    <div class="product-info">
+                        <h3>Soundcore by Anker Life Q30</h3>
+                        <p class="price">$79.99</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐☆</p>
+                        <p class="description">Hybrid Active Noise Cancelling Headphones with Multiple Modes</p>
+                        <p class="date-added">Released: October 15, 2020</p>
+                        <a href="https://www.amazon.com/Soundcore-Cancelling-Headphones-Multiple-Bluetooth/dp/B08HMWZBXC" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- TOZO T6 -->
+                <div class="product-card" data-date="2019-03-15">
+                    <img src="https://m.media-amazon.com/images/I/71cVOgvystL._AC_SX679_.jpg" alt="TOZO T6">
+                    <div class="product-info">
+                        <h3>TOZO T6</h3>
+                        <p class="price">$27.99</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐☆</p>
+                        <p class="description">True Wireless Earbuds with Qualcomm Apt-X Stereo and IPX8 Waterproof</p>
+                        <p class="date-added">Released: March 15, 2019</p>
+                        <a href="https://www.amazon.com/TOZO-T6-Bluetooth-Headphones-Waterproof/dp/B07RGZ5NKS" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Skullcandy Dime 2 -->
+                <div class="product-card" data-date="2022-03-01">
+                    <img src="https://m.media-amazon.com/images/I/61M8OEARTkL._AC_SX679_.jpg" alt="Skullcandy Dime 2">
+                    <div class="product-info">
+                        <h3>Skullcandy Dime 2</h3>
+                        <p class="price">$19.99</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐☆</p>
+                        <p class="description">True Wireless Earbuds with Microphone, 12-Hour Battery Life</p>
+                        <p class="date-added">Released: March 1, 2022</p>
+                        <a href="https://www.amazon.com/Skullcandy-Dime-True-Wireless-Earbuds/dp/B09NPCLNMN" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sony WH-1000XM4 -->
+                <div class="product-card" data-date="2020-08-06">
+                    <img src="https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg" alt="Sony WH-1000XM4">
+                    <div class="product-info">
+                        <h3>Sony WH-1000XM4</h3>
+                        <p class="price">$348.00</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐⭐</p>
+                        <p class="description">Industry Leading Noise Canceling Wireless Headphones with Alexa</p>
+                        <p class="date-added">Released: August 6, 2020</p>
+                        <a href="https://www.amazon.com/Sony-WH-1000XM4-Canceling-Headphones-phone-call/dp/B0863TXGM3" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bose QuietComfort 45 -->
+                <div class="product-card" data-date="2021-09-23">
+                    <img src="https://m.media-amazon.com/images/I/51JbsHSktkL._AC_SL1500_.jpg" alt="Bose QuietComfort 45">
+                    <div class="product-info">
+                        <h3>Bose QuietComfort 45</h3>
+                        <p class="price">$279.00</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐⭐</p>
+                        <p class="description">Wireless Noise Cancelling Bluetooth Headphones with 24Hr Battery</p>
+                        <p class="date-added">Released: September 23, 2021</p>
+                        <a href="https://www.amazon.com/Bose-QuietComfort-Wireless-Cancelling-Headphones/dp/B098FKXT8L" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sennheiser HD 450BT -->
+                <div class="product-card" data-date="2020-02-10">
+                    <img src="https://m.media-amazon.com/images/I/71z97HfSZxS.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Sennheiser HD 450BT">
+                    <div class="product-info">
+                        <h3>Sennheiser HD 450BT</h3>
+                        <p class="price">$149.95</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐☆</p>
+                        <p class="description">Bluetooth 5.0 Wireless Headphone with Active Noise Cancellation</p>
+                        <p class="date-added">Released: February 10, 2020</p>
+                        <a href="https://www.amazon.com/Sennheiser-HD-450BT-Bluetooth-Cancellation/dp/B083W7V3RG" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Jabra Elite 85h -->
+                <div class="product-card" data-date="2019-04-25">
+                    <img src="https://m.media-amazon.com/images/I/819iDDsPmWL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Jabra Elite 85h">
+                    <div class="product-info">
+                        <h3>Jabra Elite 85h</h3>
+                        <p class="price">$249.99</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐☆</p>
+                        <p class="description">SmartSound Audio, Noise Cancellation, Rain Resistant, Battery Life Up to 36 Hours</p>
+                        <p class="date-added">Released: April 25, 2019</p>
+                        <a href="https://www.amazon.com/Jabra-Elite-Wireless-Noise-Canceling-Headphones/dp/B07RQ366VK" 
+                           target="_blank" 
+                           class="buy-button"
+                           rel="noopener noreferrer">
+                            View on Amazon
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3>About EAM</h3>
+                    <p>Curating the best products for your everyday life.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="top-picks.html">Top Picks</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <form class="footer-signup">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="legal">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Use</a>
+                    <p>© 2024 EAM. Affiliate Disclosure: Some links may earn us a commission</p>
+                </div>
+            </div>
+        </div>
+    </footer> 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('product-search');
+            const ratingFilters = document.querySelectorAll('.rating-filter');
+            const productCards = document.querySelectorAll('.product-card');
+            const priceSlider = document.getElementById('price-slider');
+            const minPriceInput = document.getElementById('min-price');
+            const maxPriceInput = document.getElementById('max-price');
+            const sortSelect = document.getElementById('sort-select');
+            const clearFiltersBtn = document.getElementById('clear-filters');
+
+            // Function to get product price as number
+            function getProductPrice(card) {
+                const priceText = card.querySelector('.price').textContent;
+                return parseFloat(priceText.replace('$', ''));
+            }
+
+            // Function to count stars in a rating string
+            function getStarCount(ratingString) {
+                return (ratingString.match(/⭐/g) || []).length;
+            }
+
+            // Function to get date from product card
+            function getProductDate(card) {
+                return new Date(card.getAttribute('data-date'));
+            }
+
+            // Function to sort products
+            function sortProducts() {
+                const productsContainer = document.querySelector('.products-container');
+                const products = Array.from(productCards);
+                const sortValue = sortSelect.value;
+
+                products.sort((a, b) => {
+                    switch(sortValue) {
+                        case 'latest':
+                            const dateA = getProductDate(a);
+                            const dateB = getProductDate(b);
+                            return dateB - dateA;
+                        case 'price-low':
+                            return getProductPrice(a) - getProductPrice(b);
+                        case 'price-high':
+                            return getProductPrice(b) - getProductPrice(a);
+                        case 'rating':
+                            const ratingA = getStarCount(a.querySelector('.rating').textContent);
+                            const ratingB = getStarCount(b.querySelector('.rating').textContent);
+                            return ratingB - ratingA;
+                    }
+                });
+
+                productsContainer.innerHTML = '';
+                products.forEach(product => {
+                    productsContainer.appendChild(product);
+                });
+            }
+
+            // Function to filter products
+            function filterProducts() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedRatings = Array.from(ratingFilters)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => parseInt(checkbox.value));
+                const minPrice = parseFloat(minPriceInput.value) || 0;
+                const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
+
+                productCards.forEach(card => {
+                    const productName = card.querySelector('h3').textContent.toLowerCase();
+                    const productRating = getStarCount(card.querySelector('.rating').textContent);
+                    const productPrice = getProductPrice(card);
+                    
+                    const matchesSearch = productName.includes(searchTerm);
+                    const matchesRating = selectedRatings.length === 0 || selectedRatings.includes(productRating);
+                    const matchesPrice = productPrice >= minPrice && productPrice <= maxPrice;
+
+                    card.style.display = (matchesSearch && matchesRating && matchesPrice) ? 'flex' : 'none';
+                });
+            }
+
+            // Updated clearFilters function
+            function clearFilters() {
+                // Reset all filter inputs
+                searchInput.value = '';
+                ratingFilters.forEach(filter => filter.checked = false);
+                minPriceInput.value = '';
+                maxPriceInput.value = priceSlider.max;
+                sortSelect.value = 'latest';
+
+                // Show all products
+                productCards.forEach(card => {
+                    card.style.display = 'flex';
+                });
+
+                // Reapply sorting
+                sortProducts();
+            }
+
+            // Event Listeners
+            clearFiltersBtn.addEventListener('click', clearFilters);
+            
+            // ... rest of your existing event listeners ...
+            searchInput.addEventListener('input', filterProducts);
+            ratingFilters.forEach(filter => {
+                filter.addEventListener('change', filterProducts);
+            });
+            sortSelect.addEventListener('change', sortProducts);
+
+            priceSlider.addEventListener('input', function() {
+                const value = this.value;
+                maxPriceInput.value = value;
+                filterProducts();
+            });
+
+            minPriceInput.addEventListener('input', function() {
+                filterProducts();
+            });
+
+            maxPriceInput.addEventListener('input', function() {
+                priceSlider.value = this.value;
+                filterProducts();
+            });
+
+            // Initialize price slider
+            const maxPrice = Math.max(...Array.from(productCards).map(card => getProductPrice(card)));
+            priceSlider.max = maxPrice;
+            maxPriceInput.value = maxPrice;
+
+            // Initial sort
+            sortProducts();
+        });
+    </script>
+</body>
+</html> 
