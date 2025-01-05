@@ -1,0 +1,175 @@
+    const SHEET_ID = '1eXjsX32K09swYXp5KN5GaELiuZw_86_Y4lQPUPHZOlM';
+
+    // Add a lock service to prevent concurrent executions
+    var LOCK_KEY = "newsletterLock";
+
+    function doGet(e) {
+        return ContentService.createTextOutput('The newsletter API is working. Please use POST method.');
+    }
+
+    function doPost(e) {
+        console.log('Request received at: ' + new Date());
+        var lock = LockService.getScriptLock();
+        
+        try {
+            if (!lock.tryLock(10000)) {
+                console.log('Failed to get lock');
+                return ContentService.createTextOutput(JSON.stringify({
+                    status: 'error',
+                    message: 'Server busy, please try again.'
+                }));
+            }
+            
+            const data = JSON.parse(e.postData.contents);
+            const email = data.email;
+            console.log('Processing email:', email);
+            
+            // Send confirmation email
+            sendConfirmationEmail(email);
+            
+            // Store email in sheet
+            storeEmailInSheet(email);
+            
+            return ContentService.createTextOutput(JSON.stringify({
+                status: 'success',
+                message: 'Subscription successful'
+            }));
+            
+        } catch (error) {
+            console.error('Error occurred:', error);
+            return ContentService.createTextOutput(JSON.stringify({
+                status: 'error',
+                message: error.toString()
+            }));
+        } finally {
+            lock.releaseLock();
+        }
+    }
+
+    function sendConfirmationEmail(email) {
+        const subject = 'Welcome to EAM Newsletter!';
+        const htmlBody = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        color: #333333;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        background-color: #ffffff;
+                    }
+                    .header {
+                        background-color: #000000;
+                        padding: 20px;
+                        text-align: center;
+                    }
+                    .header h1 {
+                        color: #ffffff;
+                        margin: 0;
+                        font-size: 24px;
+                    }
+                    .content {
+                        padding: 20px;
+                        background-color: #f9f9f9;
+                        border-radius: 5px;
+                        margin: 20px 0;
+                    }
+                    .footer {
+                        text-align: center;
+                        padding: 20px;
+                        font-size: 12px;
+                        color: #666666;
+                    }
+                    .button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #000000;
+                        color: #ffffff;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        margin: 20px 0;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h1>Welcome to EAM Newsletter!</h1>
+                    </div>
+                    <div class="content">
+                        <p>Dear Subscriber,</p>
+                        <p>Thank you for joining our newsletter! We're excited to have you as part of our community.</p>
+                        <p>Here's what you can expect:</p>
+                        <ul>
+                            <li>Latest product updates</li>
+                            <li>Exclusive offers and discounts</li>
+                            <li>Industry news and insights</li>
+                            <li>Tips and best practices</li>
+                        </ul>
+                        <p>Stay tuned for our next update!</p>
+                        <center>
+                            <a href="YOUR_WEBSITE_URL" class="button">Visit Our Website</a>
+                        </center>
+                    </div>
+                    <div class="footer">
+                        <p>© 2024 EAM. All rights reserved.</p>
+                        <p>You're receiving this email because you subscribed to our newsletter.</p>
+                        <p>Our mailing address is: felixboris05@gmail.com</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `;
+
+        try {
+            MailApp.sendEmail({
+                to: email,
+                subject: subject,
+                htmlBody: htmlBody,
+                // Provide a plain text version for email clients that don't support HTML
+                body: `
+                    Welcome to EAM Newsletter!
+                    
+                    Dear Subscriber,
+                    
+                    Thank you for joining our newsletter! We're excited to have you as part of our community.
+                    
+                    Here's what you can expect:
+                    - Latest product updates
+                    - Exclusive offers and discounts
+                    - Industry news and insights
+                    - Tips and best practices
+                    
+                    Stay tuned for our next update!
+                    
+                    Best regards,
+                    EAM Team
+                    
+                    © 2024 EAM. All rights reserved.
+                    Contact: felixboris05@gmail.com
+                `
+            });
+            console.log('Email sent successfully with HTML');
+        } catch (error) {
+            console.error('Error sending email:', error);
+        }
+    }
+
+    function storeEmailInSheet(email) {
+        try {
+            // Open the specific spreadsheet using the ID
+            const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
+            const sheet = spreadsheet.getActiveSheet();
+            sheet.appendRow([email, new Date()]);
+            console.log('Email stored successfully:', email);
+        } catch (error) {
+            console.error('Error storing email:', error);
+            throw error;  // Re-throw to handle in main function
+        }
+    } 

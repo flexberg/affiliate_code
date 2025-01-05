@@ -3,7 +3,8 @@
 <head>
     <!-- Same head section as homepage -->
     <title>Categories - EAM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,9 +17,6 @@
             <a href="about.html">About Us</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="search-bar">
-            <input type="search" placeholder="Search products...">
-        </div>
     </nav> 
     <!-- Include the same navigation -->
     
@@ -30,24 +28,45 @@
     <section class="categories-expanded">
         <div class="category-container">
             <div class="category-item">
-                <img src="path/to/tech-image.jpg" alt="Tech">
-                <h2>Tech</h2>
-                <p>Latest gadgets and innovations</p>
-                <a href="#" class="category-link">Explore Tech</a>
+                <div class="category-image-wrapper">
+                    <img src="images\pexels-fauxels-3184454.jpg" alt="Latest technology gadgets and accessories">
+                    <div class="category-overlay"></div>
+                </div>
+                <div class="category-content">
+                    <h2>Tech</h2>
+                    <p>Latest gadgets and innovations for your digital lifestyle</p>
+                    <a href="products.html?category=tech" class="category-link">
+                        Explore Tech <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
             
             <div class="category-item">
-                <img src="path/to/home-image.jpg" alt="Home">
-                <h2>Home Essentials</h2>
-                <p>Make your space better</p>
-                <a href="#" class="category-link">Explore Home</a>
+                <div class="category-image-wrapper">
+                    <img src="images\pexels-ron-lach-10573239.jpg" alt="Home essentials">
+                    <div class="category-overlay"></div>
+                </div>
+                <div class="category-content">
+                    <h2>Home Essentials</h2>
+                    <p>Quality bedding and home basics for comfortable living</p>
+                    <a href="products.html?category=home-essentials" class="category-link">
+                        Explore Home Essentials <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
             
             <div class="category-item">
-                <img src="path/to/fitness-image.jpg" alt="Fitness">
-                <h2>Fitness Gear</h2>
-                <p>Equipment for your workout</p>
-                <a href="#" class="category-link">Explore Fitness</a>
+                <div class="category-image-wrapper">
+                    <img src="images\pexels-pixabay-39671.jpg" alt="Fitness equipment">
+                    <div class="category-overlay"></div>
+                </div>
+                <div class="category-content">
+                    <h2>Fitness Gear</h2>
+                    <p>Equipment for your workout</p>
+                    <a href="products.html?category=fitness" class="category-link">
+                        Explore Fitness <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
             
             <!-- Add more categories as needed -->
@@ -95,6 +114,7 @@
                 </div>
             </div>
         </div>
-    </footer> 
+    </footer>
+    <script src="js/newsletter.js"></script>
 </body>
 </html> 

@@ -6,6 +6,7 @@
     <title>Everyday Affiliate Marketing</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preload" as="image" href="images/background-homepage.gif">
 </head>
 <body>
     <!-- Navigation -->
@@ -18,14 +19,12 @@
             <a href="about.html">About Us</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="search-bar">
-            <input type="search" placeholder="Search products...">
-        </div>
     </nav>
 
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-background"></div>
         <div class="hero-content">
             <h1>Discover the Best Products for Your Everyday Life</h1>
             <p>Curated selections to enhance your lifestyle</p>
@@ -33,37 +32,11 @@
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="featured-products">
-        <h2>Featured Products</h2>
-        <div class="product-grid">
-            <!-- Product cards will be dynamically added here -->
-        </div>
-    </section>
-
-    <!-- Category Highlights -->
-    <section class="categories">
-        <h2>Browse Categories</h2>
-        <div class="category-grid">
-            <div class="category-card">Tech</div>
-            <div class="category-card">Home Essentials</div>
-            <div class="category-card">Fitness Gear</div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <h2>What Our Users Say</h2>
-        <div class="testimonial-grid">
-            <!-- Testimonial cards will be added here -->
-        </div>
-    </section>
-
     <!-- Newsletter Signup -->
     <section class="newsletter">
         <h2>Stay Updated</h2>
         <p>Get the latest product recommendations and deals</p>
-        <form class="signup-form">
+        <form class="footer-signup">
             <input type="email" placeholder="Enter your email">
             <button type="submit">Subscribe</button>
         </form>
@@ -104,12 +77,13 @@
             
             <div class="footer-bottom">
                 <div class="legal">
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Use</a>
-                    <p>© 2024 EAM. Affiliate Disclosure: Some links may earn us a commission</p>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                    <p>© 2024 EAM. Affiliate Disclosure: Links earn us a commission</p>
                 </div>
             </div>
         </div>
-    </footer> 
+    </footer>
+    <script src="js/newsletter.js"></script>
 </body>
 </html>
