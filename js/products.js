@@ -476,4 +476,8 @@ document.getElementById('clear-filters').addEventListener('click', function() {
 });
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeProducts); 
+document.addEventListener('DOMContentLoaded', initializeProducts);
+
+function redirectToHome() {
+    window.location.href = 'index.html';
+} 
