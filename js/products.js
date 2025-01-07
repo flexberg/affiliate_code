@@ -266,7 +266,7 @@ const products = [
         id: "fit006",
         name: "Tech Tools Boxing Ball Set",
         description: "Boxing reflex ball with adjustable headband for training and fitness",
-        price: 19.99,
+        price: 68.00,
         rating: 4,
         category: "fitness",
         image: "https://m.media-amazon.com/images/I/81elAxjo3DL._AC_SX679_.jpg",
