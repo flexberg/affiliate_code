@@ -9,7 +9,7 @@ const products = [
         description: "Wireless on-ear headphones with Pure Bass sound and 40h battery life",
         releaseDate: "2021-01-07",
         image: "https://m.media-amazon.com/images/I/61kFL7ywsZS.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        amazonUrl: "https://www.amazon.com/JBL-Wireless-Headphones-Compatible-Bluetooth/dp/B08WM3LMJF"
+        amazonUrl: "https://www.amazon.com/JBL-Tune-510BT-Ear-Headphones/dp/B08WM3LMJF?crid=2K8MYGRR06LOS&dib=eyJ2IjoiMSJ9.vy187ElBnzzpVHO_6nXGf1qxy7KhJDg5hmJl-6v6i99Lwlwipoewarcdm-cAsrlMSnrbXbmGA3vK8qbfxlng_cGfzmeMJCxHXNbtSBZfiNNV6sPDDW_5vtILZ_5qLgSic3dsa2eTPx6URWSRFMstqUIERZuNYya_klRs0M9SqgqA1napsbBkgQJc10ATFXSwmtVI3Uqt3wQ8tqt5Pne5klRnmuJw_ZkWh67lrgDUlIg.ko7nqTVTy0VVmzTArvMmZqBSbPkvsvUgiJNE_bRAm2g&dib_tag=se&keywords=jbl%2Btune%2B510bt%2Bbluetooth%2Bwireless%2Bheadphones&qid=1736260174&sprefix=jbl%2Btune%2B510bt%2Caps%2C255&sr=8-1&th=1&linkCode=ll1&tag=essentialam-20&linkId=5ca8839d7214ba131cf092e92ba4fc68&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const products = [
         description: "Apple W1 chip, 40 hours of battery life, built-in microphone",
         releaseDate: "2016-09-07",
         image: "https://m.media-amazon.com/images/I/61HH4j3GZdL._AC_SX522_.jpg",
-        amazonUrl: "https://www.amazon.com/Beats-Solo3-Wireless-Headphones-Built/dp/B0CCBKGDJD"
+        amazonUrl: "https://www.amazon.com/Beats-Solo3-Wireless-Headphones-Built/dp/B0CCBKGDJD?&linkCode=ll1&tag=essentialam-20&linkId=cea24378d5f157a64dc1ad6a3d5030b5&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 3,
@@ -31,7 +31,7 @@ const products = [
         description: "Bluetooth 5.3 IPX8 Waterproof Wireless Earbuds with Wireless Charging Case",
         releaseDate: "2019-07-18",
         image: "https://m.media-amazon.com/images/I/715CLGC8OML._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/TOZO-Bluetooth-Wireless-Headphones-Waterproof/dp/B07J2Z5DBM"
+        amazonUrl: "https://www.amazon.com/TOZO-Bluetooth-Wireless-Headphones-Waterproof/dp/B07J2Z5DBM?th=1&linkCode=ll1&tag=essentialam-20&linkId=6d586a9ab9f1bd5753ca77579c8a4039&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 4,
@@ -42,7 +42,7 @@ const products = [
         description: "Hybrid Active Noise Cancelling Headphones with Multiple Modes",
         releaseDate: "2020-10-15",
         image: "https://m.media-amazon.com/images/I/61+WYAjltpL._AC_SL1500_.jpg",
-        amazonUrl: "https://www.amazon.com/Soundcore-Cancelling-Headphones-Multiple-Bluetooth/dp/B08HMWZBXC"
+        amazonUrl: "https://www.amazon.com/Soundcore-Cancelling-Headphones-Multiple-Bluetooth/dp/B08HMWZBXC?th=1&linkCode=ll1&tag=essentialam-20&linkId=ac06bd2fc81b950eee394839f4c0f55d&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 5,
@@ -53,7 +53,7 @@ const products = [
         description: "True Wireless Earbuds with Qualcomm Apt-X Stereo and IPX8 Waterproof",
         releaseDate: "2019-03-15",
         image: "https://m.media-amazon.com/images/I/71cVOgvystL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/TOZO-T6-Bluetooth-Headphones-Waterproof/dp/B07RGZ5NKS"
+        amazonUrl: "https://www.amazon.com/TOZO-T6-Bluetooth-Headphones-Waterproof/dp/B07RGZ5NKS?th=1&linkCode=ll1&tag=essentialam-20&linkId=f3649d335d0933ed8222a5579ef57c78&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 6,
@@ -64,7 +64,7 @@ const products = [
         description: "True Wireless Earbuds with Microphone, 12-Hour Battery Life",
         releaseDate: "2022-03-01",
         image: "https://m.media-amazon.com/images/I/61M8OEARTkL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/Skullcandy-Dime-True-Wireless-Earbuds/dp/B09NPCLNMN"
+        amazonUrl: "https://www.amazon.com/Skullcandy-Dime-True-Wireless-Earbuds/dp/B09NPCLNMN?th=1&linkCode=ll1&tag=essentialam-20&linkId=bd39e2d61a475338cffa2340e32e074d&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 7,
@@ -75,7 +75,7 @@ const products = [
         description: "Industry Leading Noise Canceling Wireless Headphones with Alexa",
         releaseDate: "2020-08-06",
         image: "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg",
-        amazonUrl: "https://www.amazon.com/Sony-WH-1000XM4-Canceling-Headphones-phone-call/dp/B0863TXGM3"
+        amazonUrl: "https://www.amazon.com/Sony-WH-1000XM4-Canceling-Headphones-phone-call/dp/B0863TXGM3?th=1&linkCode=ll1&tag=essentialam-20&linkId=7b79879bc4764462399f123dc8ba78d7&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 8,
@@ -86,18 +86,18 @@ const products = [
         description: "Wireless Noise Cancelling Bluetooth Headphones with 24Hr Battery",
         releaseDate: "2021-09-23",
         image: "https://m.media-amazon.com/images/I/51JbsHSktkL._AC_SL1500_.jpg",
-        amazonUrl: "https://www.amazon.com/Bose-QuietComfort-Wireless-Cancelling-Headphones/dp/B098FKXT8L"
+        amazonUrl: "https://www.amazon.com/Bose-QuietComfort-Wireless-Cancelling-Headphones/dp/B098FKXT8L?&linkCode=ll1&tag=essentialam-20&linkId=f7c9ea284667d1fbe6f102116faa403f&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 9,
-        name: "Sennheiser HD 450BT",
-        price: 149.95,
+        name: "Sony WH-CH520 Wireless Headphones",
+        price: 38.00,
         rating: 4,
         category: "tech",
-        description: "Bluetooth 5.0 Wireless Headphone with Active Noise Cancellation",
-        releaseDate: "2020-02-10",
-        image: "https://m.media-amazon.com/images/I/71z97HfSZxS.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        amazonUrl: "https://www.amazon.com/Sennheiser-HD-450BT-Bluetooth-Cancellation/dp/B083W7V3RG"
+        description: "Wireless Bluetooth On-Ear Headset with up to 50-hour battery life.",
+        releaseDate: "2023-02-21",
+        image: "https://m.media-amazon.com/images/I/41lArSiD5hL._AC_SX679_.jpg",
+        amazonUrl: "https://www.amazon.com/Sony-WH-CH520-Headphones-Bluetooth-Microphone/dp/B0BS1PRC4L?crid=10822S99YWPUJ&dib=eyJ2IjoiMSJ9.Hgfz3J88tWCdHSckvjbGbqZj9eHFUWa0WpG0xAfIbhyKEAzykSf6yQoTYrcxEcCM6sdW2UITRSZB8rfpf-F4AyiCb-QytQIPLjnbZnfMB-NNJDbTXcASF2wnhdYOEeUbreqoxb2cnwfRsU3J4zQCS3Bc5z18kMYU0MSEUtGXv8uIjHU45vHV9YjtemwfB8Gb5R_smPZ2u1xBb3S-4AhkOG5LQsWC2rEYsI-5Hryn9D4.DlQIrtk0wMKjALqx6T666nLtODJUXkEbRuWUnH-4C_s&dib_tag=se&keywords=headphones&qid=1736260439&refinements=p_72%3A1248879011&rnid=1248877011&sprefix=headphon%2Caps%2C277&sr=8-11&th=1&linkCode=ll1&tag=essentialam-20&linkId=e300915d300203ac2eacdde116be474d&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 10,
@@ -108,7 +108,7 @@ const products = [
         description: "SmartSound Audio, Noise Cancellation, Rain Resistant, Battery Life Up to 36 Hours",
         releaseDate: "2019-04-25",
         image: "https://m.media-amazon.com/images/I/819iDDsPmWL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        amazonUrl: "https://www.amazon.com/Jabra-Elite-Wireless-Noise-Canceling-Headphones/dp/B07RQ366VK"
+        amazonUrl: "https://www.amazon.com/Jabra-Elite-Wireless-Noise-Canceling-Headphones/dp/B07RQ366VK?&linkCode=ll1&tag=essentialam-20&linkId=efa0dc273e09402d6327fd98297733b6&language=en_US&ref_=as_li_ss_tl"
     },
     // Home essentials products remain unchanged
     {
@@ -119,7 +119,7 @@ const products = [
         rating: 4,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/713afJ6oJ+L._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/Utopia-Bedding-4-Piece-Queen-Sheets/dp/B00NX0WXQI"
+        amazonUrl: "https://www.amazon.com/Utopia-Bedding-4-Piece-Queen-Sheets/dp/B00NX0WXQI?th=1&linkCode=ll1&tag=essentialam-20&linkId=85277c32122693ce62d4cb1fbaedfe7d&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed002",
@@ -129,7 +129,7 @@ const products = [
         rating: 5,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/71329CVoVDL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/Pillows-for-Sleeping-2-Pack/dp/B01LYNW421"
+        amazonUrl: "https://www.amazon.com/Pillows-for-Sleeping-2-Pack/dp/B01LYNW421?th=1&linkCode=ll1&tag=essentialam-20&linkId=2afdda0d570e528c10440a837da16aed&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed003",
@@ -139,7 +139,7 @@ const products = [
         rating: 4,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/81REaH4eCzL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/LuxClub-Friendly-Hypoallergenic-Anti-Bacteria-Washable/dp/B072BKFF3K"
+        amazonUrl: "https://www.amazon.com/LuxClub-Friendly-Hypoallergenic-Anti-Bacteria-Washable/dp/B072BKFF3K?&linkCode=ll1&tag=essentialam-20&linkId=f1ab4fe8d6cbac6db0c3d21dc9da2df5&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed004",
@@ -149,7 +149,7 @@ const products = [
         rating: 4,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/810Kq8+YGvL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/Utopia-Bedding-Quilted-Fitted-Mattress/dp/B00NESCOY0"
+        amazonUrl: "https://www.amazon.com/Utopia-Bedding-Quilted-Fitted-Mattress/dp/B00NESCOY0?th=1&linkCode=ll1&tag=essentialam-20&linkId=7bfaf7ecd437dab56f104eb466769953&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed005",
@@ -159,7 +159,7 @@ const products = [
         rating: 4,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/71b8fh-dQ4L._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/Queen-Size-Piece-Sheet-Set/dp/B01M16WBW1"
+        amazonUrl: "https://www.amazon.com/Queen-Size-Piece-Sheet-Set/dp/B01M16WBW1?th=1&linkCode=ll1&tag=essentialam-20&linkId=160d62ee418ebce53ace1e59079f1b2a&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed006",
@@ -169,7 +169,7 @@ const products = [
         rating: 5,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/61txMSeT2yL._AC_SL1500_.jpg",
-        amazonUrl: "https://www.amazon.com/Utopia-Bedding-Gusseted-Premium-Quality/dp/B08DTH86Q2"
+        amazonUrl: "https://www.amazon.com/Utopia-Bedding-Gusseted-Premium-Quality/dp/B08DTH86Q2?th=1&linkCode=ll1&tag=essentialam-20&linkId=b061dd330ba7a9aaaf614102ef0eb3f1&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed007",
@@ -178,8 +178,8 @@ const products = [
         price: 89.99,
         rating: 4,
         category: "home-essentials",
-        image: "https://m.media-amazon.com/images/I/91E0W+IJixL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/BEDSURE-California-King-Comforter-Set/dp/B0BC1BZQ4R"
+        image: "https://m.media-amazon.com/images/I/71nKrm8ss+L._AC_SX679_.jpg",
+        amazonUrl: "https://www.amazon.com/BEDSURE-California-King-Comforter-Set/dp/B08PBJ94H4?th=1&linkCode=ll1&tag=essentialam-20&linkId=42b5b16014b0d34be58fa53e697f8d0b&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed008",
@@ -189,7 +189,7 @@ const products = [
         rating: 4,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/61ckZkGMlpL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/Utopia-Bedding-Comforter-Duvet-Insert/dp/B00S1TC442"
+        amazonUrl: "https://www.amazon.com/Utopia-Bedding-Comforter-Duvet-Insert/dp/B00S1TC442?th=1&linkCode=ll1&tag=essentialam-20&linkId=83c01a1d9c75dd23e577c38942f20d3d&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed009",
@@ -199,7 +199,7 @@ const products = [
         rating: 5,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/81LhSdQK1nL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/Amazon-Basics-Lightweight-Microfiber-14-inch/dp/B00Q7OB4EE"
+        amazonUrl: "https://www.amazon.com/Amazon-Basics-Lightweight-Microfiber-14-inch/dp/B00Q7OB4EE?th=1&linkCode=ll1&tag=essentialam-20&linkId=b928e87ddec85ce211c5524e81feec85&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: "bed010",
@@ -209,7 +209,7 @@ const products = [
         rating: 4,
         category: "home-essentials",
         image: "https://m.media-amazon.com/images/I/712Z-XsruGL._AC_SX679_.jpg",
-        amazonUrl: "https://www.amazon.com/Mellanni-King-Size-Sheet-Set/dp/B08RZDH679"
+        amazonUrl: "https://www.amazon.com/Mellanni-King-Size-Sheet-Set/dp/B08RZDH679?&linkCode=ll1&tag=essentialam-20&linkId=0a715e246fd8ba969672a8972178816a&language=en_US&ref_=as_li_ss_tl"
     },
     // Add new fitness products
     {
