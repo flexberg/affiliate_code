@@ -86,45 +86,9 @@
     <!-- Add navigation dots container -->
     <div class="product-nav"></div>
 
-    <section class="products-container">
-        <!-- Sony WH-1000XM4 -->
-        <div class="product-card">
-            <img src="https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg" alt="Sony WH-1000XM4">
-            <div class="product-info">
-                <h3>Sony WH-1000XM4</h3>
-                <p class="price">$348.00</p>
-                <p class="rating">⭐⭐⭐⭐⭐</p>
-                <p class="description">Noise Canceling Wireless Headphones</p>
-                <p class="date-added">Released: Aug 6, 2020</p>
-                <a href="https://www.amazon.com/Sony-WH-1000XM4-Canceling-Headphones-phone-call/dp/B0863TXGM3?th=1&linkCode=ll1&tag=essentialam-20&linkId=7b79879bc4764462399f123dc8ba78d7&language=en_US&ref_=as_li_ss_tl" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
-            </div>
-        </div>
-
-        <!-- JBL Tune 510BT -->
-        <div class="product-card">
-            <img src="https://m.media-amazon.com/images/I/61kFL7ywsZS.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="JBL Tune 510BT">
-            <div class="product-info">
-                <h3>JBL Tune 510BT</h3>
-                <p class="price">$29.95</p>
-                <p class="rating">⭐⭐⭐⭐</p>
-                <p class="description">Wireless on-ear headphones</p>
-                <p class="date-added">Released: Jan 7, 2021</p>
-                <a href="https://www.amazon.com/JBL-Tune-510BT-Ear-Headphones/dp/B08WM3LMJF?crid=2K8MYGRR06LOS&dib=eyJ2IjoiMSJ9.vy187ElBnzzpVHO_6nXGf1qxy7KhJDg5hmJl-6v6i99Lwlwipoewarcdm-cAsrlMSnrbXbmGA3vK8qbfxlng_cGfzmeMJCxHXNbtSBZfiNNV6sPDDW_5vtILZ_5qLgSic3dsa2eTPx6URWSRFMstqUIERZuNYya_klRs0M9SqgqA1napsbBkgQJc10ATFXSwmtVI3Uqt3wQ8tqt5Pne5klRnmuJw_ZkWh67lrgDUlIg.ko7nqTVTy0VVmzTArvMmZqBSbPkvsvUgiJNE_bRAm2g&dib_tag=se&keywords=jbl%2Btune%2B510bt%2Bbluetooth%2Bwireless%2Bheadphones&qid=1736260174&sprefix=jbl%2Btune%2B510bt%2Caps%2C255&sr=8-1&th=1&linkCode=ll1&tag=essentialam-20&linkId=5ca8839d7214ba131cf092e92ba4fc68&language=en_US&ref_=as_li_ss_tl" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
-            </div>
-        </div>
-
-        <!-- Beats Solo3 Wireless -->
-        <div class="product-card">
-            <img src="https://m.media-amazon.com/images/I/61HH4j3GZdL._AC_SX522_.jpg" alt="Beats Solo3 Wireless">
-            <div class="product-info">
-                <h3>Beats Solo3 Wireless</h3>
-                <p class="price">$99.99</p>
-                <p class="rating">⭐⭐⭐⭐⭐</p>
-                <p class="description">40 hours of battery life</p>
-                <p class="date-added">Released: Sep 7, 2016</p>
-                <a href="https://www.amazon.com/Beats-Solo3-Wireless-Headphones-Built/dp/B0CCBKGDJD?&linkCode=ll1&tag=essentialam-20&linkId=cea24378d5f157a64dc1ad6a3d5030b5&language=en_US&ref_=as_li_ss_tl" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
-            </div>
-        </div>
+    <!-- Replace the hardcoded products with a container for JavaScript to populate -->
+    <section class="products-container" id="top-picks-container">
+        <!-- Products will be dynamically inserted here -->
     </section>
 
     <!-- Include the same footer -->
@@ -170,15 +134,35 @@
         </div>
     </footer> 
 
-    <!-- Add this script section in the head or just before the closing body tag -->
+    <!-- Add the products.js script -->
+    <script src="js/products.js"></script>
+    
+    <!-- Add a new script for top picks functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const container = document.querySelector('.products-container');
-            const cards = document.querySelectorAll('.product-card');
+            // Select top rated products (rating of 5)
+            const topPicks = products.filter(product => product.rating === 5);
+            
+            const container = document.getElementById('top-picks-container');
             const navContainer = document.querySelector('.product-nav');
 
+            // Render top picks
+            container.innerHTML = topPicks.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="price">$${product.price.toFixed(2)}</p>
+                        <p class="rating">${'⭐'.repeat(product.rating)}</p>
+                        <p class="description">${product.description}</p>
+                        <p class="date-added">Released: ${new Date(product.releaseDate).toLocaleDateString()}</p>
+                        <a href="${product.amazonUrl}" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                    </div>
+                </div>
+            `).join('');
+
             // Create navigation dots
-            cards.forEach((_, index) => {
+            topPicks.forEach((_, index) => {
                 const dot = document.createElement('div');
                 dot.className = 'nav-dot' + (index === 0 ? ' active' : '');
                 dot.addEventListener('click', () => scrollToCard(index));
@@ -186,21 +170,21 @@
             });
 
             function scrollToCard(index) {
+                const cards = document.querySelectorAll('.product-card');
                 const card = cards[index];
                 container.scrollTo({
                     top: card.offsetTop,
                     behavior: 'smooth'
                 });
                 
-                // Only update nav dots, remove card active state
                 document.querySelectorAll('.nav-dot').forEach((dot, i) => {
                     dot.classList.toggle('active', i === index);
                 });
             }
 
-            // Update only nav dots on scroll, remove card active state updates
             container.addEventListener('scroll', () => {
                 const scrollPosition = container.scrollTop;
+                const cards = document.querySelectorAll('.product-card');
                 cards.forEach((card, index) => {
                     const cardPosition = card.offsetTop;
                     if (Math.abs(scrollPosition - cardPosition) < 100) {
