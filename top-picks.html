@@ -5,7 +5,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .products-container {
+        .page-header {
+            text-align: center;
+            padding: 40px 0;
+            background: transparent;
+        }
+
+        .products-container2 {
             max-width: 400px;
             margin: 20px auto;
             height: 600px;
@@ -14,32 +20,34 @@
             /* Hide scrollbar but keep functionality */
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
+            position: relative;
+            z-index: 1;
+            background: transparent;
         }
 
         /* Hide scrollbar for Chrome, Safari and Opera */
-        .products-container::-webkit-scrollbar {
+        .products-container2::-webkit-scrollbar {
             display: none;
         }
 
         .product-card {
             width: 100%;
             min-height: 600px;
-            background: white;
+            background: solid;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: none; /* Removed shadow */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             padding: 15px;
             margin-bottom: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
             cursor: pointer;
         }
 
         .product-card:hover {
             transform: scale(1.02);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             border: 2px solid #007BFF;
         }
 
@@ -63,9 +71,75 @@
         .nav-dot.active {
             background: #007BFF;
         }
+
+        #floating-reviews {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1; /* Put behind everything */
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-review {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            font-size: 16px;
+            pointer-events: none;
+            z-index: -1; /* Put behind everything */
+            transform-origin: center center;
+            will-change: transform;
+            opacity: 0.4;
+        }
+
+        .floating-review .stars {
+            color: yellow;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .floating-review .date {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .floating-review div:last-child {
+            max-height: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Ensure nav is above reviews */
+        .sticky-nav {
+            position: sticky;
+            z-index: 2;
+        }
+
+        /* Ensure footer is above reviews */
+        footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Make product info text more readable */
+        .product-info {
+            color: #333;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
     </style>
 </head>
 <body>
+    <div id="floating-reviews"></div>
     <nav class="sticky-nav">
         <div class="logo">EAM</div>
         <div class="nav-links">
@@ -87,7 +161,7 @@
     <div class="product-nav"></div>
 
     <!-- Replace the hardcoded products with a container for JavaScript to populate -->
-    <section class="products-container" id="top-picks-container">
+    <section class="products-container2" id="top-picks-container">
         <!-- Products will be dynamically inserted here -->
     </section>
 
@@ -134,6 +208,9 @@
         </div>
     </footer> 
 
+    <!-- Add Matter.js via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    
     <!-- Add the products.js script -->
     <script src="js/products.js"></script>
     
@@ -155,7 +232,7 @@
                         <p class="price">$${product.price.toFixed(2)}</p>
                         <p class="rating">${'⭐'.repeat(product.rating)}</p>
                         <p class="description">${product.description}</p>
-                        <p class="date-added">Released: ${new Date(product.releaseDate).toLocaleDateString()}</p>
+                        ${product.releaseDate ? `<p class="date-added">Released: ${new Date(product.releaseDate).toLocaleDateString()}</p>` : ''}
                         <a href="${product.amazonUrl}" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
                     </div>
                 </div>
@@ -197,5 +274,125 @@
         });
     </script>
     <script src="js/newsletter.js"></script>
+
+    <!-- Then your floating reviews script -->
+    <script>
+        function createFloatingReviews() {
+            const container = document.getElementById('floating-reviews');
+            if (!container) return;
+
+            // Get the initial boundaries
+            const nav = document.querySelector('.sticky-nav');
+            const footer = document.querySelector('footer');
+            const navHeight = nav.offsetHeight;
+            
+            // Container setup
+            container.style.top = `${navHeight}px`;
+            container.style.zIndex = '-1';
+
+            // Updated reviews data with product titles
+            const reviews = [
+                // Beats Solo3
+                { title: "Beats Solo3 Wireless", text: "Great sound quality and long battery life. Comfortable for extended use, but the bass could be stronger.", rating: 5, date: "December 4, 2024" },
+                { title: "Beats Solo3 Wireless", text: "Sleek design and easy Bluetooth pairing. However, noise isolation is average, and the price is a bit high.", rating: 5, date: "December 7, 2024" },
+                { title: "Beats Solo3 Wireless", text: "Excellent for workouts and commuting. The foldable design is convenient, but the ear cushions may wear out over time.", rating: 5, date: "January 2, 2024" },
+                
+                // Bose QuietComfort
+                { title: "Bose QuietComfort", text: "Outstanding noise cancellation and sound clarity. Very comfortable, but the price is steep.", rating: 5, date: "January 15, 2024" },
+                { title: "Bose QuietComfort", text: "Perfect for travel and office use. Battery life is impressive, but the case could be more durable.", rating: 5, date: "January 19, 2024" },
+                { title: "Bose QuietComfort", text: "Superb audio quality and comfort. The noise-cancelling feature is a game-changer, but the touch controls can be finicky.", rating: 5, date: "January 22, 2024" },
+                
+                // Pillows for Sleeping
+                { title: "Pillows for Sleeping", text: "Soft and supportive, great for side sleepers. Holds its shape well after washing.", rating: 5, date: "February 1, 2024" },
+                { title: "Pillows for Sleeping", text: "Affordable and comfortable, but may be too firm for some people.", rating: 5, date: "February 5, 2024" },
+                { title: "Pillows for Sleeping", text: "Excellent value for the price. The pillows are breathable and help reduce neck pain.", rating: 5, date: "February 8, 2024" },
+                
+                // Utopia Bedding
+                { title: "Utopia Bedding Pillow", text: "High-quality and durable. Provides excellent support for all sleeping positions.", rating: 5, date: "February 15, 2024" },
+                { title: "Utopia Bedding Pillow", text: "Soft yet firm, perfect for back sleepers. The gusseted design keeps its shape well.", rating: 5, date: "February 18, 2024" },
+                { title: "Utopia Bedding Pillow", text: "Great pillow for the price. Hypoallergenic and easy to clean.", rating: 5, date: "February 22, 2024" },
+                
+                // Amazon Basics
+                { title: "Amazon Basics Pillow", text: "Lightweight and comfortable, but may flatten over time. Good for stomach sleepers.", rating: 5, date: "March 1, 2024" },
+                { title: "Amazon Basics Pillow", text: "Affordable and soft, but lacks support for neck pain sufferers.", rating: 5, date: "March 5, 2024" },
+                { title: "Amazon Basics Pillow", text: "Easy to wash and maintain. A decent budget option, but not very durable.", rating: 5, date: "March 8, 2024" },
+                
+                // Bowflex SelectTech
+                { title: "Bowflex SelectTech", text: "Saves space and offers a wide range of weights. Easy to adjust, but the dial mechanism can feel stiff.", rating: 5, date: "March 15, 2024" },
+                { title: "Bowflex SelectTech", text: "Perfect for home workouts. Durable and well-made, but expensive.", rating: 5, date: "March 18, 2024" },
+                { title: "Bowflex SelectTech", text: "Great for strength training. The weight adjustment is quick, but the dumbbells are bulky to store.", rating: 5, date: "March 22, 2024" }
+            ];
+
+            reviews.forEach((review, index) => {
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'floating-review';
+                reviewElement.style.opacity = '0.4';
+                reviewElement.innerHTML = `
+                    <div class="title" style="font-weight: bold; margin-bottom: 3px;">${review.title}</div>
+                    <div class="stars" style="margin-bottom: 3px;">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
+                    <div class="date" style="margin-bottom: 3px;">${review.date}</div>
+                    <div>${review.text}</div>
+                `;
+                container.appendChild(reviewElement);
+
+                // Initial position and velocity
+                let x = Math.random() * (window.innerWidth - 300);
+                let y = navHeight + Math.random() * (footer.getBoundingClientRect().top - navHeight - 150);
+                let dx = (Math.random() - 0.5) * 2; // Random direction
+                let dy = (Math.random() - 0.5) * 2; // Random direction
+                let rotation = 0;
+                let rotationSpeed = (Math.random() - 0.5) * 0.5; // Random rotation speed
+
+                function animate() {
+                    // Get current footer position relative to viewport
+                    const footerRect = footer.getBoundingClientRect();
+                    const footerTop = footerRect.top + window.scrollY;
+                    
+                    // Update position
+                    x += dx;
+                    y += dy;
+                    rotation += rotationSpeed;
+
+                    // Bounce off boundaries with larger padding
+                    const padding = 50; // Increased padding
+                    if (x <= padding || x >= window.innerWidth - 300 - padding) {
+                        dx = -dx;
+                        x = Math.max(padding, Math.min(x, window.innerWidth - 300 - padding));
+                    }
+                    
+                    // Strict boundary checking for top and bottom
+                    if (y <= navHeight + padding) {
+                        dy = Math.abs(dy); // Force downward movement
+                        y = navHeight + padding;
+                    }
+                    if (y >= footerTop - 150 - padding) {
+                        dy = -Math.abs(dy); // Force upward movement
+                        y = footerTop - 150 - padding;
+                    }
+
+                    // Apply movement
+                    reviewElement.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+            });
+        }
+
+        // Rerun animation when window is resized or scrolled
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('floating-reviews');
+            container.innerHTML = ''; // Clear existing reviews
+            createFloatingReviews(); // Recreate with new boundaries
+        });
+
+        window.addEventListener('scroll', () => {
+            // Update footer boundary on scroll
+            const footer = document.querySelector('footer');
+            const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+        });
+
+        window.addEventListener('load', createFloatingReviews);
+    </script>
 </body>
 </html> 
