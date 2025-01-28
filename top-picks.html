@@ -78,8 +78,8 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            pointer-events: none;
-            z-index: -1; /* Put behind everything */
+            pointer-events: auto;
+            z-index: 0;
             background: rgba(0, 0, 0, 0.1);
         }
 
@@ -91,11 +91,74 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             width: 300px;
             font-size: 16px;
-            pointer-events: none;
-            z-index: -1; /* Put behind everything */
+            pointer-events: auto;
+            z-index: 1;
             transform-origin: center center;
             will-change: transform;
             opacity: 0.4;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .floating-review:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .floating-review.expanded {
+            position: fixed;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
+            animation: expandToLeft 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        }
+
+        .floating-review.expanded div:last-child {
+            max-height: none;
+            -webkit-line-clamp: unset;
+        }
+
+        .close-button {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 5px;
+            line-height: 1;
+        }
+
+        .close-button:hover {
+            color: #000;
+        }
+
+        .floating-review.expanded .close-button {
+            display: block;
+        }
+
+        @keyframes expandToLeft {
+            0% {
+                /* Start at current position and rotation */
+                transform: translate(var(--startX), var(--startY)) rotate(var(--startRotation));
+                width: 300px;
+                opacity: 0.4;
+            }
+            30% {
+                /* First just rotate to upright while staying in place */
+                transform: translate(var(--startX), var(--startY)) rotate(0deg);
+                width: 300px;
+                opacity: 0.6;
+            }
+            100% {
+                /* Move to fixed destination */
+                transform: translate(300px, 50vh) scale(1.2) rotate(0deg);
+                width: 400px;
+                opacity: 1;
+            }
         }
 
         .floating-review .stars {
@@ -288,7 +351,7 @@
             
             // Container setup
             container.style.top = `${navHeight}px`;
-            container.style.zIndex = '-1';
+            container.style.zIndex = '0';
 
             // Updated reviews data with product titles
             const reviews = [
@@ -303,9 +366,9 @@
                 { title: "Bose QuietComfort", text: "Superb audio quality and comfort. The noise-cancelling feature is a game-changer, but the touch controls can be finicky.", rating: 5, date: "January 22, 2024" },
                 
                 // Pillows for Sleeping
-                { title: "Pillows for Sleeping", text: "Soft and supportive, great for side sleepers. Holds its shape well after washing.", rating: 5, date: "February 1, 2024" },
-                { title: "Pillows for Sleeping", text: "Affordable and comfortable, but may be too firm for some people.", rating: 5, date: "February 5, 2024" },
-                { title: "Pillows for Sleeping", text: "Excellent value for the price. The pillows are breathable and help reduce neck pain.", rating: 5, date: "February 8, 2024" },
+                { title: "Beckham Hotel Collection", text: "Soft and supportive, great for side sleepers. Holds its shape well after washing.", rating: 5, date: "February 1, 2024" },
+                { title: "Beckham Hotel Collection", text: "Affordable and comfortable, but may be too firm for some people.", rating: 5, date: "February 5, 2024" },
+                { title: "Beckham Hotel Collection", text: "Excellent value for the price. The pillows are breathable and help reduce neck pain.", rating: 5, date: "February 8, 2024" },
                 
                 // Utopia Bedding
                 { title: "Utopia Bedding Pillow", text: "High-quality and durable. Provides excellent support for all sleeping positions.", rating: 5, date: "February 15, 2024" },
@@ -328,11 +391,47 @@
                 reviewElement.className = 'floating-review';
                 reviewElement.style.opacity = '0.4';
                 reviewElement.innerHTML = `
-                    <div class="title" style="font-weight: bold; margin-bottom: 3px;">${review.title}</div>
-                    <div class="stars" style="margin-bottom: 3px;">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
-                    <div class="date" style="margin-bottom: 3px;">${review.date}</div>
-                    <div>${review.text}</div>
+                    <button class="close-button" aria-label="Close review">×</button>
+                    <div class="title" style="font-weight: bold; margin-bottom: 8px; font-size: 18px;">${review.title}</div>
+                    <div class="stars" style="margin-bottom: 8px;">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
+                    <div class="date" style="margin-bottom: 8px; color: #666;">${review.date}</div>
+                    <div style="line-height: 1.5;">${review.text}</div>
                 `;
+
+                // Add click handler for close button
+                const closeButton = reviewElement.querySelector('.close-button');
+                closeButton.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event from bubbling to review
+                    reviewElement.classList.remove('expanded');
+                    reviewElement.style.animation = '';
+                });
+
+                // Add click handler for review
+                reviewElement.addEventListener('click', function() {
+                    if (this.classList.contains('expanded')) return;
+                    
+                    // Close any other expanded reviews
+                    const expandedReview = document.querySelector('.floating-review.expanded');
+                    if (expandedReview) {
+                        expandedReview.classList.remove('expanded');
+                        expandedReview.style.animation = '';
+                    }
+
+                    // Get current position and rotation
+                    const style = window.getComputedStyle(this);
+                    const transform = new DOMMatrix(style.transform);
+                    const rotation = Math.atan2(transform.b, transform.a) * (180 / Math.PI);
+                    
+                    // Set CSS variables for the starting position only
+                    this.style.setProperty('--startX', `${transform.e}px`);
+                    this.style.setProperty('--startY', `${transform.f}px`);
+                    this.style.setProperty('--startRotation', `${rotation}deg`);
+                    
+                    // Start animation
+                    this.classList.add('expanded');
+                    this.style.animation = 'expandToLeft 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards';
+                });
+
                 container.appendChild(reviewElement);
 
                 // Initial position and velocity
@@ -376,6 +475,15 @@
                 }
 
                 animate();
+            });
+
+            // Add click handler to close expanded review when clicking outside
+            document.addEventListener('click', function(e) {
+                const expandedReview = document.querySelector('.floating-review.expanded');
+                if (expandedReview && !expandedReview.contains(e.target)) {
+                    expandedReview.classList.remove('expanded');
+                    expandedReview.style.animation = ''; // Resume animation
+                }
             });
         }
 
