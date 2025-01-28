@@ -14,13 +14,13 @@ const products = [
     {
         id: 2,
         name: "Beats Solo3 Wireless",
-        price: 99.99,
+        price: 39.99,
         rating: 5,
         category: "tech",
         description: "Apple W1 chip, 40 hours of battery life, built-in microphone",
         releaseDate: "2016-09-07",
         image: "https://m.media-amazon.com/images/I/61HH4j3GZdL._AC_SX522_.jpg",
-        amazonUrl: "https://www.amazon.com/Beats-Solo3-Wireless-Headphones-Built/dp/B0CCBKGDJD?&linkCode=ll1&tag=essentialam-20&linkId=cea24378d5f157a64dc1ad6a3d5030b5&language=en_US&ref_=as_li_ss_tl"
+        amazonUrl: "https://www.amazon.com/JBL-Tune-510BT-Ear-Headphones/dp/B08WM298TV?crid=2KV2NA1CVU805&dib=eyJ2IjoiMSJ9.IjQoIiJRaaldFOClSninkjbiXrn4MLgjtcp_bs8gScoDfTsIDUVxfUDQp-RmHhiF07SycIrxtmB5N7TE3MHX8ywFGf-dj_kVo8_3vXO865uFInMG2C4YXC8EY7PiMT8SuluhJT_iNyaUa2LWyH1pK7o82osL_ghz-ZH62lv7xymC3xQ409TSxS23HdBskfeWZ76-Qg5Pak0DOFp_GwHMDu5oFbnrFuOiOCvWqdKuVWQ.SpPghsg6RRy_2AD5PKJAzhXklZbgeUIOlEwRKXFwWtM&dib_tag=se&keywords=beats%2Bsolo%2B3%2Bwireless&qid=1738095315&sprefix=beats%2Bsolo%2B3%2Bwireless%2Caps%2C191&sr=8-4&th=1&linkCode=ll1&tag=essentialam-20&linkId=11e1faa452943b3e2f2239fe42e5bd5e&language=en_US&ref_=as_li_ss_tl"
     },
     {
         id: 3,
