@@ -316,26 +316,30 @@ const products = [
 
 function renderProducts(productsToRender) {
     const container = document.getElementById('products-container');
-    container.innerHTML = productsToRender.map(product => `
-        <div class="product-card">
-            <img src="${product.image}" alt="${product.name}">
-            <div class="product-info">
-                <h3>${product.name}</h3>
-                <p class="price">$${product.price.toFixed(2)}</p>
-                <p class="rating">Rating: ${'⭐'.repeat(product.rating)}${'☆'.repeat(5-product.rating)}</p>
-                <p class="description">${product.description}</p>
-                ${product.releaseDate ? 
-                    `<p class="date-added">Released: ${new Date(product.releaseDate).toLocaleDateString()}</p>` 
-                    : ''}
-                <a href="${product.amazonUrl}" 
-                   target="_blank" 
-                   class="buy-button"
-                   rel="noopener noreferrer">
-                    View on Amazon
-                </a>
+    container.innerHTML = productsToRender.map(product => {
+        // Use the same emoji star that works in filters
+        const stars = '⭐'.repeat(product.rating);
+        return `
+            <div class="product-card">
+                <img src="${product.image}" alt="${product.name}">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="price">$${product.price.toFixed(2)}</p>
+                    <p class="rating">${stars}</p>
+                    <p class="description">${product.description}</p>
+                    ${product.releaseDate ? 
+                        `<p class="date-added">Released: ${new Date(product.releaseDate).toLocaleDateString()}</p>` 
+                        : ''}
+                    <a href="${product.amazonUrl}" 
+                       target="_blank" 
+                       class="buy-button"
+                       rel="noopener noreferrer">
+                        View on Amazon
+                    </a>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function filterProducts() {

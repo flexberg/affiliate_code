@@ -4,6 +4,8 @@
     <title>Top Picks - EAM</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Update Font Awesome to latest version -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .page-header {
             text-align: center;
@@ -125,15 +127,14 @@
             right: 10px;
             background: none;
             border: none;
-            font-size: 24px;
             cursor: pointer;
             color: #666;
             padding: 5px;
             line-height: 1;
         }
 
-        .close-button:hover {
-            color: #000;
+        .close-button i {
+            font-size: 20px;
         }
 
         .floating-review.expanded .close-button {
@@ -162,8 +163,7 @@
         }
 
         .floating-review .stars {
-            color: yellow;
-            font-size: 24px;
+            color: #ffd700;  /* Golden color for stars */
             margin-bottom: 10px;
         }
 
@@ -198,6 +198,10 @@
         .product-info {
             color: #333;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .stars i {
+            margin-right: 2px;
         }
     </style>
 </head>
@@ -265,7 +269,7 @@
                 <div class="legal">
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms-of-use.html">Terms of Use</a>
-                    <p>© 2024 EAM. Affiliate Disclosure: Some links may earn us a commission</p>
+                    <p>&copy; 2024 EAM. Affiliate Disclosure: Some links may earn us a commission</p>
                 </div>
             </div>
         </div>
@@ -286,14 +290,14 @@
             const container = document.getElementById('top-picks-container');
             const navContainer = document.querySelector('.product-nav');
 
-            // Render top picks
+            // Update the star rating to use Font Awesome stars
             container.innerHTML = topPicks.map(product => `
                 <div class="product-card">
                     <img src="${product.image}" alt="${product.name}">
                     <div class="product-info">
                         <h3>${product.name}</h3>
                         <p class="price">$${product.price.toFixed(2)}</p>
-                        <p class="rating">${'⭐'.repeat(product.rating)}</p>
+                        <p class="rating">${'<i class="fa-solid fa-star"></i>'.repeat(product.rating)}</p>
                         <p class="description">${product.description}</p>
                         ${product.releaseDate ? `<p class="date-added">Released: ${new Date(product.releaseDate).toLocaleDateString()}</p>` : ''}
                         <a href="${product.amazonUrl}" class="buy-button" target="_blank" rel="noopener noreferrer">View on Amazon</a>
@@ -391,9 +395,9 @@
                 reviewElement.className = 'floating-review';
                 reviewElement.style.opacity = '0.4';
                 reviewElement.innerHTML = `
-                    <button class="close-button" aria-label="Close review">×</button>
+                    <button class="close-button" aria-label="Close review"><i class="fa-solid fa-times"></i></button>
                     <div class="title" style="font-weight: bold; margin-bottom: 8px; font-size: 18px;">${review.title}</div>
-                    <div class="stars" style="margin-bottom: 8px;">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
+                    <div class="stars" style="margin-bottom: 8px;">${'<i class="fa-solid fa-star"></i>'.repeat(review.rating)}${'<i class="fa-regular fa-star"></i>'.repeat(5-review.rating)}</div>
                     <div class="date" style="margin-bottom: 8px; color: #666;">${review.date}</div>
                     <div style="line-height: 1.5;">${review.text}</div>
                 `;

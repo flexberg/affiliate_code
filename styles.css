@@ -1018,3 +1018,27 @@ h2 {
         padding: 1rem;
     }
 }
+
+.products-subtitle {
+    color: #666;
+    margin: -10px 0 20px 0;
+    font-size: 1.1em;
+}
+
+/* Star rating styles */
+.rating, .rating-filters {
+    color: #ffd700;  /* Golden yellow color */
+    letter-spacing: 2px; /* Add some spacing between stars */
+}
+
+.rating-filters label {
+    margin-left: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-card .rating {
+    margin: 8px 0;
+    font-size: 1.2em;
+}
