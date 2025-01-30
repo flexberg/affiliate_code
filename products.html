@@ -9,8 +9,13 @@
     <!-- Update Font Awesome to latest version -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="js/products.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+    <!-- Add right after the opening <body> tag -->
+    <div class="filter-overlay"></div>
+
     <!-- Navigation (same as homepage) -->
     <nav class="sticky-nav">
         <div class="logo">EAM</div>
@@ -28,6 +33,12 @@
 
 
     <main class="products-page">
+        <!-- Add right after the opening <main class="products-page"> tag -->
+        <button class="filter-toggle">
+            <i class="fas fa-filter"></i>
+            Filters
+        </button>
+
         <!-- Filters Sidebar -->
         <aside class="filters">
             <h2>Filters</h2>
