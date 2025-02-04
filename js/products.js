@@ -1,4 +1,5 @@
-const products = [
+// Make sure we're not redeclaring products
+window.products = window.products || [
     // Tech products
     {
         id: 1,
@@ -351,7 +352,7 @@ function filterProducts() {
     const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
     const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
 
-    const filteredProducts = products.filter(product => {
+    const filteredProducts = window.products.filter(product => {
         const matchesSearch = product.name.toLowerCase().includes(searchTerm);
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
         const matchesRating = selectedRatings.length === 0 || selectedRatings.includes(product.rating);
@@ -386,7 +387,7 @@ function sortAndRenderProducts(productsToSort) {
 
 function clearFilters() {
     // Reset price inputs
-    const maxPrice = Math.max(...products.map(p => p.price));
+    const maxPrice = Math.max(...window.products.map(p => p.price));
     document.getElementById('price-slider').value = maxPrice;
     document.getElementById('min-price').value = 0;
     document.getElementById('max-price').value = maxPrice;
@@ -462,7 +463,7 @@ function initializeProducts() {
 // Add clear filters functionality
 document.getElementById('clear-filters').addEventListener('click', function() {
     // Reset price inputs
-    const maxPrice = Math.max(...products.map(p => p.price));
+    const maxPrice = Math.max(...window.products.map(p => p.price));
     document.getElementById('price-slider').value = maxPrice;
     document.getElementById('min-price').value = 0;
     document.getElementById('max-price').value = maxPrice;
@@ -486,69 +487,71 @@ function redirectToHome() {
     window.location.href = 'index.html';
 }
 
-function initializeMobileFilters() {
-    // Wait for a brief moment to ensure DOM is fully loaded
-    setTimeout(() => {
-        const filterToggle = document.querySelector('.filter-toggle');
-        const filters = document.querySelector('.filters');
-        const filterOverlay = document.querySelector('.filter-overlay');
+// Make the function globally available
+window.initializeMobileFilters = function() {
+    console.log('Initializing mobile filters...');
+    
+    const filterToggle = document.querySelector('.filter-toggle');
+    const filters = document.querySelector('.filters');
+    const filterOverlay = document.querySelector('.filter-overlay');
 
-        if (!filterToggle || !filters || !filterOverlay) {
-            console.error('Mobile filter elements not found:', {
-                filterToggle: !!filterToggle,
-                filters: !!filters,
-                filterOverlay: !!filterOverlay
-            });
-            return;
-        }
+    console.log('Elements found:', {
+        filterToggle: !!filterToggle,
+        filters: !!filters,
+        filterOverlay: !!filterOverlay
+    });
 
-        // Force remove any existing click handlers
-        filterToggle.replaceWith(filterToggle.cloneNode(true));
-        const newFilterToggle = document.querySelector('.filter-toggle');
+    if (!filterToggle || !filters || !filterOverlay) {
+        console.error('Required elements not found');
+        return;
+    }
 
-        // Add click handler with direct DOM manipulation
-        newFilterToggle.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Filter toggle clicked');
-            filters.classList.toggle('active');
-            filterOverlay.classList.toggle('active');
-            document.body.style.overflow = filters.classList.contains('active') ? 'hidden' : '';
-            return false; // Extra prevention of event bubbling
+    // Remove existing listeners and clone the button
+    const newFilterToggle = filterToggle.cloneNode(true);
+    filterToggle.parentNode.replaceChild(newFilterToggle, filterToggle);
+
+    function toggleFilters(e) {
+        console.log('Toggle filters clicked');
+        e.preventDefault();
+        e.stopPropagation();
+        
+        filters.classList.toggle('active');
+        filterOverlay.classList.toggle('active');
+        document.body.style.overflow = filters.classList.contains('active') ? 'hidden' : '';
+    }
+
+    newFilterToggle.onclick = toggleFilters;
+    newFilterToggle.addEventListener('click', toggleFilters);
+    newFilterToggle.addEventListener('touchstart', toggleFilters);
+
+    filterOverlay.onclick = () => {
+        filters.classList.remove('active');
+        filterOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.filters input').forEach(input => {
+        input.onclick = () => {
+            setTimeout(() => {
+                filters.classList.remove('active');
+                filterOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }, 300);
         };
+    });
+};
 
-        // Ensure overlay click works
-        filterOverlay.onclick = function() {
-            filters.classList.remove('active');
-            filterOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        };
-
-        // Close filters when a filter is selected on mobile
-        if (window.innerWidth <= 768) {
-            document.querySelectorAll('.filters input').forEach(input => {
-                input.onclick = () => {
-                    setTimeout(() => {
-                        filters.classList.remove('active');
-                        filterOverlay.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }, 300);
-                };
-            });
-        }
-    }, 500); // Increased delay to ensure everything is loaded
-}
-
-// Multiple initialization attempts to ensure it works
-document.addEventListener('DOMContentLoaded', () => {
-    initializeProducts();
-    initializeMobileFilters();
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded');
+    if (typeof window.initializeMobileFilters === 'function') {
+        window.initializeMobileFilters();
+    } else {
+        console.error('initializeMobileFilters not found');
+    }
 });
 
 // Backup initialization
 if (document.readyState === 'complete') {
-    initializeMobileFilters();
-}
-
-// Extra safety net initialization
-window.addEventListener('load', initializeMobileFilters); 
+    window.initializeMobileFilters();
+} 

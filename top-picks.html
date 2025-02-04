@@ -208,12 +208,18 @@
 <body>
     <div id="floating-reviews"></div>
     <nav class="sticky-nav">
-        <div class="logo">EAM</div>
+        <a href="index.html" class="logo">EAM</a>
+        <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="categories.html">Categories</a>
+            <a href="products.html">Products</a>
             <a href="top-picks.html">Top Picks</a>
-            <a href="about.html">About Us</a>
+            <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
     </nav> 
@@ -506,5 +512,6 @@
 
         window.addEventListener('load', createFloatingReviews);
     </script>
+    <script src="js/mobileNav.js"></script>
 </body>
 </html> 

@@ -18,12 +18,18 @@
 
     <!-- Navigation (same as homepage) -->
     <nav class="sticky-nav">
-        <div class="logo">EAM</div>
+        <a href="index.html" class="logo">EAM</a>
+        <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
+            <a href="index.html">Home</a>
             <a href="categories.html">Categories</a>
+            <a href="products.html">Products</a>
             <a href="top-picks.html">Top Picks</a>
-            <a href="about.html">About Us</a>
+            <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
         <div class="search-bar">
@@ -151,5 +157,104 @@
         </div>
     </footer> 
     <script src="js/newsletter.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+    // Mobile Filters initialization
+    const initializeMobileFilters = function() {
+        console.log('Initializing mobile filters...');
+        
+        const filterToggle = document.querySelector('.filter-toggle');
+        const filters = document.querySelector('.filters');
+        const filterOverlay = document.querySelector('.filter-overlay');
+
+        console.log('Elements found:', {
+            filterToggle: !!filterToggle,
+            filters: !!filters,
+            filterOverlay: !!filterOverlay
+        });
+
+        if (!filterToggle || !filters || !filterOverlay) {
+            console.error('Required elements not found');
+            return;
+        }
+
+        function toggleFilters(e) {
+            console.log('Toggle filters clicked');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            filters.classList.toggle('active');
+            filterOverlay.classList.toggle('active');
+            document.body.style.overflow = filters.classList.contains('active') ? 'hidden' : '';
+        }
+
+        filterToggle.onclick = toggleFilters;
+        filterToggle.addEventListener('click', toggleFilters);
+        filterToggle.addEventListener('touchstart', toggleFilters);
+
+        filterOverlay.onclick = () => {
+            filters.classList.remove('active');
+            filterOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        document.querySelectorAll('.filters input').forEach(input => {
+            input.onclick = () => {
+                setTimeout(() => {
+                    filters.classList.remove('active');
+                    filterOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+        });
+    };
+
+    // Add Mobile Menu initialization
+    const initializeMobileMenu = function() {
+        console.log('Initializing mobile menu...');
+        
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        console.log('Menu elements found:', {
+            menuToggle: !!menuToggle,
+            navLinks: !!navLinks
+        });
+
+        if (!menuToggle || !navLinks) {
+            console.error('Menu elements not found');
+            return;
+        }
+
+        // Remove any existing listeners
+        const newMenuToggle = menuToggle.cloneNode(true);
+        menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
+
+        // Add click handler with logging
+        newMenuToggle.onclick = function(e) {
+            console.log('Menu toggle clicked');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            newMenuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        };
+    };
+
+    // Initialize both mobile menu and filters
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM Content Loaded');
+        initializeMobileMenu();
+        initializeMobileFilters();
+    });
+
+    // Backup initialization
+    if (document.readyState === 'complete') {
+        initializeMobileMenu();
+        initializeMobileFilters();
+    }
+    </script>
+    <!-- Add before closing </body> tag, after other scripts -->
+    <script src="js/mobileNav.js"></script>
 </body>
 </html> 

@@ -9,17 +9,22 @@
 </head>
 <body>
     <nav class="sticky-nav">
-        <div class="logo">EAM</div>
+        <a href="index.html" class="logo">EAM</a>
+        <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="categories.html">Categories</a>
+            <a href="products.html">Products</a>
             <a href="top-picks.html">Top Picks</a>
-            <a href="about.html">About Us</a>
+            <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
-    </nav> 
-    <!-- Include the same navigation -->
-    
+    </nav>
+
     <section class="page-header">
         <h1>Product Categories</h1>
         <p>Browse our curated collections</p>
@@ -116,5 +121,39 @@
         </div>
     </footer>
     <script src="js/newsletter.js"></script>
+    <script>
+    const initializeMobileMenu = function() {
+        console.log('Initializing mobile menu...');
+        
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (!menuToggle || !navLinks) {
+            console.error('Menu elements not found');
+            return;
+        }
+
+        const newMenuToggle = menuToggle.cloneNode(true);
+        menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
+
+        newMenuToggle.onclick = function(e) {
+            console.log('Menu toggle clicked');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            newMenuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        };
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM Content Loaded');
+        initializeMobileMenu();
+    });
+
+    if (document.readyState === 'complete') {
+        initializeMobileMenu();
+    }
+    </script>
 </body>
 </html> 
