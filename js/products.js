@@ -429,16 +429,34 @@ function initializeProducts() {
     maxPriceInput.value = maxPrice;
     minPriceInput.value = 0;
 
-    // Add event listeners for price inputs and slider
-    minPriceInput.addEventListener('input', function() {
+    // Update these event listeners to not close the filter panel
+    document.querySelectorAll('.category-filter').forEach(filter => {
+        filter.addEventListener('change', function(e) {
+            e.stopPropagation(); // Prevent event bubbling
+            filterProducts();
+        });
+    });
+
+    document.querySelectorAll('.rating-filter').forEach(filter => {
+        filter.addEventListener('change', function(e) {
+            e.stopPropagation(); // Prevent event bubbling
+            filterProducts();
+        });
+    });
+
+    // Price inputs
+    minPriceInput.addEventListener('input', function(e) {
+        e.stopPropagation(); // Prevent event bubbling
         filterProducts();
     });
 
-    maxPriceInput.addEventListener('input', function() {
+    maxPriceInput.addEventListener('input', function(e) {
+        e.stopPropagation(); // Prevent event bubbling
         filterProducts();
     });
 
-    priceSlider.addEventListener('input', function() {
+    priceSlider.addEventListener('input', function(e) {
+        e.stopPropagation(); // Prevent event bubbling
         maxPriceInput.value = this.value;
         filterProducts();
     });
@@ -448,13 +466,6 @@ function initializeProducts() {
 
     // Add event listeners
     document.getElementById('product-search').addEventListener('input', filterProducts);
-    document.querySelectorAll('.rating-filter').forEach(filter => {
-        filter.addEventListener('change', filterProducts);
-    });
-    // Add event listeners for category filters
-    document.querySelectorAll('.category-filter').forEach(filter => {
-        filter.addEventListener('change', filterProducts);
-    });
     document.getElementById('sort-select').addEventListener('change', filterProducts);
     document.getElementById('clear-filters').addEventListener('click', clearFilters);
     // ... add other event listeners
@@ -489,17 +500,9 @@ function redirectToHome() {
 
 // Make the function globally available
 window.initializeMobileFilters = function() {
-    console.log('Initializing mobile filters...');
-    
     const filterToggle = document.querySelector('.filter-toggle');
-    const filters = document.querySelector('.filters');
+    const filters = document.querySelector('[data-filters-container]');
     const filterOverlay = document.querySelector('.filter-overlay');
-
-    console.log('Elements found:', {
-        filterToggle: !!filterToggle,
-        filters: !!filters,
-        filterOverlay: !!filterOverlay
-    });
 
     if (!filterToggle || !filters || !filterOverlay) {
         console.error('Required elements not found');
@@ -511,7 +514,6 @@ window.initializeMobileFilters = function() {
     filterToggle.parentNode.replaceChild(newFilterToggle, filterToggle);
 
     function toggleFilters(e) {
-        console.log('Toggle filters clicked');
         e.preventDefault();
         e.stopPropagation();
         
@@ -521,25 +523,31 @@ window.initializeMobileFilters = function() {
     }
 
     newFilterToggle.onclick = toggleFilters;
-    newFilterToggle.addEventListener('click', toggleFilters);
-    newFilterToggle.addEventListener('touchstart', toggleFilters);
 
-    filterOverlay.onclick = () => {
-        filters.classList.remove('active');
-        filterOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    };
-
-    document.querySelectorAll('.filters input').forEach(input => {
-        input.onclick = () => {
-            setTimeout(() => {
-                filters.classList.remove('active');
-                filterOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }, 300);
-        };
+    // Handle overlay clicks
+    filterOverlay.addEventListener('mousedown', (e) => {
+        if (e.target === filterOverlay) {
+            filters.classList.remove('active');
+            filterOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
-};
+
+    // Prevent any clicks inside filters from closing
+    filters.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Handle close button
+    const filtersClose = document.querySelector('.filters-close');
+    if (filtersClose) {
+        filtersClose.addEventListener('click', () => {
+            filters.classList.remove('active');
+            filterOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+}
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
@@ -548,6 +556,15 @@ document.addEventListener('DOMContentLoaded', function() {
         window.initializeMobileFilters();
     } else {
         console.error('initializeMobileFilters not found');
+    }
+
+    const filtersClose = document.querySelector('.filters-close');
+    const filters = document.querySelector('.filters');
+    
+    if (filtersClose) {
+        filtersClose.addEventListener('click', function() {
+            filters.classList.remove('active');
+        });
     }
 });
 
